@@ -9,8 +9,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
+import javax.servlet.http.Cookie;
 import java.util.Random;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -72,6 +74,21 @@ public class FormDataControllerTest {
                 .andExpect(content().string("id: 34 - Arthur Dent says thanks for all the fish"));
 
     }
+
+    @Test
+    public void testCookies() throws Exception {
+        this.mvc.perform(get("/cookie").cookie(new Cookie("foo", "bar")))
+                .andExpect(status().isOk())
+                .andExpect(content().string("bar"));
+    }
+
+    @Test
+    public void testHeaders() throws Exception {
+        this.mvc.perform(get("/header").header("Host", "example.com"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("example.com"));
+    }
+
 
 
 
