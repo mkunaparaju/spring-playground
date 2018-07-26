@@ -2,10 +2,7 @@ package com.example.springplayground.Controller;
 
 import com.example.springplayground.Service.GetMathService;
 import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/math")
@@ -32,4 +29,10 @@ public class GetMathController {
 
         return getMathService.getSum(paramMap);
     }
+
+    @GetMapping("/volume/{length}/{width}/{height}")
+    public String getVolume(@PathVariable Integer length, @PathVariable Integer width, @PathVariable Integer height){
+        return String.valueOf(length*height*width);
+    }
+
 }

@@ -54,4 +54,11 @@ public class GetMathControllerTest {
                 .andExpect(content().string("15"));
     }
 
+    @Test
+    public void testGetVolume() throws Exception {
+        this.mvc.perform(get("/math/volume/3/4/5"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("60"));
+    }
+
 }
