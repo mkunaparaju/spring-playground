@@ -4,6 +4,8 @@ import com.example.springplayground.Service.GetMathService;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/math")
 public class GetMathController {
@@ -33,6 +35,12 @@ public class GetMathController {
     @GetMapping("/volume/{length}/{width}/{height}")
     public String getVolume(@PathVariable Integer length, @PathVariable Integer width, @PathVariable Integer height){
         return String.valueOf(length*height*width);
+    }
+
+    @PostMapping("/area")
+    public String getArea(@RequestParam Map<String,String> paramMap){
+
+        return getMathService.getArea(paramMap);
     }
 
 }
