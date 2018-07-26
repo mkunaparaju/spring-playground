@@ -1,4 +1,4 @@
-package com.example.springplayground;
+package com.example.springplayground.Controller;
 
 import org.springframework.web.bind.annotation.*;
 

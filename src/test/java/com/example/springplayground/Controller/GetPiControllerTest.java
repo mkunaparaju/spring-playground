@@ -1,7 +1,7 @@
-package com.example.springplayground;
+package com.example.springplayground.Controller;
 
+import com.example.springplayground.Controller.GetMathController;
 import org.junit.Test;
-import org.junit.runner.Request;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -14,19 +14,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(PagesController.class)
-public class PagesControllerTest {
+@WebMvcTest(GetMathController.class)
+public class GetPiControllerTest {
 
     @Autowired
     MockMvc mvc;
 
     @Test
-    public void testHomePage() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.get("/hello");
+    public void testGetPi() throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders.get("/math/pi");
+
         this.mvc.perform(request)
                 .andExpect(status().isOk())
-                .andExpect(content().string("Hello World"));
-
-
+                .andExpect(content().string("3.141592653589793"));
     }
 }
