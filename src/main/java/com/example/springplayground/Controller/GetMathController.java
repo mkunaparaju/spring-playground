@@ -1,6 +1,8 @@
 package com.example.springplayground.Controller;
 
+import com.example.springplayground.Model.Area;
 import com.example.springplayground.Service.GetMathService;
+import org.springframework.http.MediaType;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,10 +39,10 @@ public class GetMathController {
         return String.valueOf(length*height*width);
     }
 
-    @PostMapping("/area")
-    public String getArea(@RequestParam Map<String,String> paramMap){
+    @PostMapping(value = "/area", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String getArea(Area paramBody){
 
-        return getMathService.getArea(paramMap);
+        return getMathService.getArea(paramBody);
     }
 
 }

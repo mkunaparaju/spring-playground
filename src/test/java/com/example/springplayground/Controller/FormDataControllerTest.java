@@ -81,7 +81,6 @@ public class FormDataControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("bar"));
     }
-
     @Test
     public void testHeaders() throws Exception {
         this.mvc.perform(get("/header").header("Host", "example.com"))
