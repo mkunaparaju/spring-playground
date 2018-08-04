@@ -1,5 +1,6 @@
 package com.example.springplayground.Controller;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,15 @@ public class FlightControllerTest {
     @Autowired
     MockMvc mvc;
 
+    @Ignore
     @Test
-    void testGetSingleFlight(){
+    public void testGetSingleFlight(){
 
     }
 
+    @Ignore
     @Test
-    void testGetAllFlights(){
+    public void testGetAllFlights(){
 
     }
 

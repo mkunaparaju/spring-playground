@@ -24,7 +24,7 @@ public class GetMathController {
     }
 
     @GetMapping("/calculate")
-    public String getCalculation(@RequestParam String operation, String x, String y)  {
+    public String getCalculation(@RequestParam(defaultValue = "add") String operation, String x, String y)  {
        return getMathService.calculate(operation, x, y);
     }
 

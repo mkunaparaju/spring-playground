@@ -3,6 +3,7 @@ package com.example.springplayground.Controller;
 import com.example.springplayground.Controller.GetMathController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
@@ -51,6 +52,14 @@ public class GetMathControllerTest {
     }
 
     @Test
+    public void testGetDefaultCalculation() throws Exception {
+        this.mvc.perform(get("/math/calculate/?x=12&y=6"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("18"));
+    }
+
+
+    @Test
     public void testGetSumCalculation() throws Exception    {
         this.mvc.perform(get("/math/sum?n=4&n=5&n=6"))
                 .andExpect(status().isOk())
@@ -88,6 +97,19 @@ public class GetMathControllerTest {
         this.mvc.perform(request)
                 .andExpect(status().isOk())
                 .andExpect(content().string("Area of a 4x7 rectangle is 28"));
+
+    }
+
+    @Test
+    public void testGetInvalidArea() throws Exception {
+        MockHttpServletRequestBuilder request = post("/math/area")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("type", "rectangle")
+                .param("radius", "5");
+
+        this.mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(content().string("INVALID"));
 
     }
 
