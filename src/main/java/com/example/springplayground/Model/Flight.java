@@ -1,56 +1,37 @@
 package com.example.springplayground.Model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.annotation.sql.DataSourceDefinition;
 import java.util.Date;
 import java.util.List;
 
+
 public class Flight {
 
-    private int id;
-    private String destination;
-    private Date departsOn;
-    private List<Person> passengers;
-    private Person pilot;
+    @JsonFormat( pattern = "yyyy-MM-dd HH:mm")
+    @JsonProperty("Departs")
+    private Date departs;
 
-    public int getId() {
-        return id;
+    @JsonProperty("Tickets")
+    private List<Ticket> tickets;
+
+    public Date getDeparts() {
+        return departs;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDeparts(Date departs) {
+        this.departs = departs;
     }
 
-    public String getDestination() {
-        return destination;
+    public List<Ticket> getTickets() {
+        return tickets;
     }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    public Date getDepartsOn() {
-        return departsOn;
-    }
 
-    public void setDepartsOn(Date departsOn) {
-        this.departsOn = departsOn;
-    }
-
-    public List<Person> getPassengers() {
-        return passengers;
-    }
-
-    public void setPassengers(List<Person> passengers) {
-        this.passengers = passengers;
-    }
-
-    public Person getPilot() {
-        return pilot;
-    }
-
-    public void setPilot(Person pilot) {
-        this.pilot = pilot;
-    }
 }
