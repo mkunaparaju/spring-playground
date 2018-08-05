@@ -6,15 +6,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.annotation.sql.DataSourceDefinition;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 
 public class Flight {
 
     @JsonFormat( pattern = "yyyy-MM-dd HH:mm")
-    @JsonProperty("Departs")
+   // @JsonProperty("Departs")
     private Date departs;
 
-    @JsonProperty("Tickets")
+   // @JsonProperty("Tickets")
     private List<Ticket> tickets;
 
     public Date getDeparts() {
@@ -34,4 +35,11 @@ public class Flight {
     }
 
 
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "departs=" + departs +
+                ", tickets=" + tickets +
+                '}';
+    }
 }

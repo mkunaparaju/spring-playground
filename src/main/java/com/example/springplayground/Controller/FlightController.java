@@ -1,13 +1,8 @@
 package com.example.springplayground.Controller;
 
-import com.example.springplayground.Model.Flight;
-import com.example.springplayground.Model.Passenger;
-import com.example.springplayground.Model.Ticket;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.springplayground.Model.*;
+import org.springframework.web.bind.annotation.*;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -15,10 +10,27 @@ import java.util.*;
 @RestController
 @RequestMapping("/flights")
 public class FlightController {
-
     private Flight flightOne = new Flight();
     private Flight flightTwo = new Flight();
-    private List<Flight> flights = new ArrayList<Flight>();
+
+
+    @GetMapping("/flight")
+    public Flight getFlight() throws ParseException {
+        return getFlightOne();
+    }
+
+    @GetMapping("")
+    public List<Flight> getFlights() throws ParseException {
+        List<Flight> flights = new ArrayList<Flight>();
+        flights.add(getFlightOne());
+        flights.add(getFlightTwo());
+        return flights;
+    }
+
+    @PostMapping("/tickets/total")
+    public TicketTotalResponse getTicketsTotalResponse(@RequestBody TicketsTotalRequest request){
+        return getTotal(request);
+    }
 
     public Flight getFlightOne() throws ParseException {
         Passenger passenger = new Passenger();
@@ -56,18 +68,14 @@ public class FlightController {
         return flightTwo;
     }
 
-    @GetMapping("/flight")
-    public Flight getFlight() throws ParseException {
-        return getFlightOne();
+    public TicketTotalResponse getTotal(TicketsTotalRequest request) {
+        List<Ticket> tickets = request.getTickets();
+        int sum = 0;
+        for(Ticket ticket : tickets){
+            sum += ticket.getPrice();
+        }
+        TicketTotalResponse response = new TicketTotalResponse();
+        response.setResult(sum);
+        return response;
     }
-
-    @GetMapping("")
-    public List<Flight> getFlights() throws ParseException {
-        flights.add(getFlightOne());
-        flights.add(getFlightTwo());
-        return flights;
-    }
-
-
-
 }

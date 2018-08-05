@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Ticket {
 
-    @JsonProperty("Passenger")
+   // @JsonProperty("Passenger")
     private Passenger passenger;
 
-    @JsonProperty("Price")
+   // @JsonProperty("Price")
     private int price;
 
     public Passenger getPassenger() {
@@ -24,5 +24,13 @@ public class Ticket {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "passenger=" + passenger +
+                ", price=" + price +
+                '}';
     }
 }

@@ -3,10 +3,13 @@ package com.example.springplayground.Service;
 import com.example.springplayground.Model.Area;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.LinkedMultiValueMap;
 
 import static org.junit.Assert.*;
 
+@RunWith(SpringRunner.class)
 public class GetMathServiceTest {
 
     private GetMathService mathService;

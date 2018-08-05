@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Passenger {
 
-    @JsonProperty("FirstName")
+   // @JsonProperty("FirstName")
     private String firstName;
 
-    @JsonProperty("LastName")
+   // @JsonProperty("LastName")
     private String lastName;
 
     public String getFirstName() {
@@ -24,6 +24,14 @@ public class Passenger {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "Passenger{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }
 
