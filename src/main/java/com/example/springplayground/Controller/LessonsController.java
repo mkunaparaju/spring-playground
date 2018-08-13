@@ -2,6 +2,8 @@ package com.example.springplayground.Controller;
 
 import com.example.springplayground.Model.Lesson;
 import com.example.springplayground.crud.LessonRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -35,6 +37,16 @@ public class LessonsController {
     public String deleteLesson(@PathVariable Long id) {
         this.repository.deleteById(id);
         return "Deleted";
+    }
+
+    @PatchMapping("/{id}")
+    public String patchUpdateLesson(@PathVariable Long id, @RequestBody Lesson updatedLesson) throws JsonProcessingException {
+        Lesson lesson = this.repository.findById(id).get();
+        lesson.setTitle(updatedLesson.getTitle());
+        lesson.setDeliveredOn(updatedLesson.getDeliveredOn());
+        repository.save(lesson);
+        
+        return new ObjectMapper().writeValueAsString(lesson);
     }
 
 
