@@ -6,6 +6,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -45,10 +48,18 @@ public class LessonsController {
         lesson.setTitle(updatedLesson.getTitle());
         lesson.setDeliveredOn(updatedLesson.getDeliveredOn());
         repository.save(lesson);
-        
+
         return new ObjectMapper().writeValueAsString(lesson);
     }
 
+    @GetMapping("/find/{title}")
+    public Lesson getLessonsByTitle(@PathVariable String title) {
+        return this.repository.findByTitle(title);
+    }
 
-
+    @GetMapping("/between")
+    public List<Lesson> between(@RequestParam String date1,
+                                    @RequestParam String date2){
+        return repository.findBetweenDates(date1, date2);
+    }
 }

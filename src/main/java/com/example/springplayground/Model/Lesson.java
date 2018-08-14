@@ -42,4 +42,14 @@ public class Lesson {
     public void setDeliveredOn(Date deliveredOn) {
         this.deliveredOn = deliveredOn;
     }
+
+    @Override
+    public String toString() {
+        return "Lesson{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", deliveredOn=" + deliveredOn +
+                '}';
+    }
 }
+
