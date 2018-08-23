@@ -11,7 +11,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/words")
-public class WordController {
+public class StringsController {
 
     @Autowired
     private WordCounter wordCounter;
