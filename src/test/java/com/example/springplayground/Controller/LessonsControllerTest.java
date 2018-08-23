@@ -64,6 +64,7 @@ public class LessonsControllerTest {
     @Transactional
     @Rollback
     public void testGet() throws Exception {
+
         MockHttpServletRequestBuilder request = get("/lessons")
                 .contentType(MediaType.APPLICATION_JSON);
 

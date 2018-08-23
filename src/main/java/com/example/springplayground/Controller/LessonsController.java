@@ -48,7 +48,6 @@ public class LessonsController {
         lesson.setTitle(updatedLesson.getTitle());
         lesson.setDeliveredOn(updatedLesson.getDeliveredOn());
         repository.save(lesson);
-
         return new ObjectMapper().writeValueAsString(lesson);
     }
 
