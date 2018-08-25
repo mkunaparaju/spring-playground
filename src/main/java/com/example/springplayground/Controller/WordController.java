@@ -9,15 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
+
 @RestController
-@RequestMapping("/words")
-public class StringsController {
+public class WordController {
 
     @Autowired
-    private WordCounter wordCounter;
+    WordCounter wordCounter;
 
-    @PostMapping("/count")
-    public Map<String, Integer> count(@RequestBody String body){
-        return wordCounter.count(body);
+    @RequestMapping("/words/count")
+    public Map<String, Integer> countWords(@RequestBody String message) {
+        Map<String, Integer> result = wordCounter.count(message);
+        return result;
     }
 }
+
+
