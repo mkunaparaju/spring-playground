@@ -17,6 +17,10 @@ import java.util.List;
 @Service
 public class MovieService {
 
+    public RestTemplate getRestTemplate() {
+        return restTemplate;
+    }
+
     private final RestTemplate restTemplate = new RestTemplate();
     private MovieConfig movieConfig;
 
