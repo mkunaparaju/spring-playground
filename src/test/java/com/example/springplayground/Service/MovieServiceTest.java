@@ -18,7 +18,6 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -44,14 +43,14 @@ public class MovieServiceTest {
         when(movieConfig.getApiKey()).thenReturn("b983e82f");
 
         movieService = new MovieService(movieConfig);
-        mockServer  = MockRestServiceServer.createServer(movieService.getRestTemplate());
+        mockServer = MockRestServiceServer.createServer(movieService.getRestTemplate());
     }
 
     @Test
     public void getMovies_returnsTheCorrectResponse() throws Exception {
         String json = getJSON("/movie.json");
 
-        URI targetUrl= UriComponentsBuilder.fromUriString(movieConfig.getHost())
+        URI targetUrl = UriComponentsBuilder.fromUriString(movieConfig.getHost())
                 .path("/")
                 .queryParam("apikey", movieConfig.getApiKey())
                 .queryParam("s", "Harry Potter and the Deathly Hallows: Part 2")
