@@ -75,6 +75,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // this line is the one that changes
         auth.userDetailsService(employeeDetailsService)
-        .passwordEncoder(NoOpPasswordEncoder.getInstance());
+        .passwordEncoder(passwordEncoder());
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
